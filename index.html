@@ -1,0 +1,71 @@
+<!--
+Shelby Heffron
+Exploration 1
+9/14/18
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Weather</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+        
+        <script src="weather.js"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        
+        <link rel="stylesheet" href="styles.css">
+        
+        <script>
+            
+            
+        $(document).ready(function() {
+            $('#zip').characterCounter();
+        });
+		    
+	   </script>
+        
+    </head>
+    
+    <body class="blue lighten-5">
+        <div ng-app="weather">
+            <div ng-controller="weatherDisplayController">
+                  <div class="row">
+                        <div class="col s10 l4 push-l4 push-s1">
+                            <div class="card blue">
+                                <div class="card-image imageCont">
+                                    <img ng-src="https://openweathermap.org/img/w/{{weatherForcast().weather[0].icon}}.png" class=" imageCont">
+                                    <span class="card-title">Weather Conditions for {{weatherForcast().name}}</span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="white-text">Current temperature: {{weatherForcast().main.temp}} F</p>
+                                    <p class="white-text">Conditions: {{weatherForcast().weather[0].main}}</p>
+                                    <p class="white-text">High: {{weatherForcast().main.temp_max}} F</p>
+                                    <p class="white-text">Low: {{weatherForcast().main.temp_min}} F</p>
+                                    <p class="white-text">Wind Speed: {{weatherForcast().wind.speed}} MPH</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+            <div class="row" ng-controller="weatherSearchController">
+                
+                <div class="input-field col s10 l4 push-l4 push-s1">
+                    <input id="zip" type="text" data-length="5" ng-model="zipCode">
+                    <label for="zip">Zip Code</label>
+                    <a class="waves-effect waves-light btn blue" ng-click="validateSearch()">Search</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
